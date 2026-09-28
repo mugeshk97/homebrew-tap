@@ -1,0 +1,28 @@
+name: test
+
+# Installs the cask on a real Mac for every change, so a bad version or checksum never ships.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  cask:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tap this repository
+        run: brew tap mugeshk97/tap "$GITHUB_WORKSPACE"
+      - name: Style
+        run: brew style --cask mugeshk97/tap/tokenmeter
+      - name: Audit
+        run: brew audit --cask --strict mugeshk97/tap/tokenmeter
+      - name: Install
+        run: brew install --cask mugeshk97/tap/tokenmeter
+      - name: Check the app
+        run: |
+          test -d /Applications/Tokenmeter.app
+          plutil -extract CFBundleShortVersionString raw /Applications/Tokenmeter.app/Contents/Info.plist
+          codesign --verify --strict /Applications/Tokenmeter.app
+      - name: Uninstall
+        run: brew uninstall --cask --zap mugeshk97/tap/tokenmeter
