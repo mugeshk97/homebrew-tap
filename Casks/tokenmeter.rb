@@ -1,9 +1,9 @@
 cask "tokenmeter" do
   arch arm: "arm64", intel: "x64"
 
-  version "1.0.2"
-  sha256 arm:   "24b83b13f19f8adbfab695ee42b4404eb412299841baa2de113d388b90d4e248",
-         intel: "48158efe123970cb8825817d2dfc246a268123f221ed2a96c4dce9f58fd3e4f6"
+  version "1.0.3"
+  sha256 arm:   "581db84d22794f3874d01bcf97b9b55f8b4ae3be6ef6b13f8f367b38f3201431",
+         intel: "536ef0fbffa6da7ac58494bf560833bf1dd0107d55eaf0ddbf8915cde79ae392"
 
   url "https://github.com/mugeshk97/tokenmeter/releases/download/v#{version}/tokenmeter-#{version}-#{arch}.zip"
   name "Tokenmeter"
